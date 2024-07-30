@@ -17,6 +17,7 @@ public class disparo : MonoBehaviour
 
     void Update()
     {
+        if (!stats.Puede) return;
         if (Input.GetMouseButton(0) && canShoot)
         {
             StartCoroutine(Disparar());

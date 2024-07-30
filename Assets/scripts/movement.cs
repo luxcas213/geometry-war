@@ -15,6 +15,7 @@ public class movement : MonoBehaviour
     }
     void Update()
     {
+        if (!stats.Puede) return;
         mov.x = Input.GetAxisRaw("Horizontal");
         mov.y = Input.GetAxisRaw("Vertical");
     }

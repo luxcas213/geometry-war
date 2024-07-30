@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class playerstats : MonoBehaviour
 {
+    public bool Puede=true;
+
     public float vida = 100f;
     public float maxVida = 100f;
     public float daño = 10f;
@@ -25,8 +28,11 @@ public class playerstats : MonoBehaviour
     public Transform skillPanelContainer; 
     public GameObject levelUpUI;
 
+    public GameObject powerUpsObj;
+
     void Start()
     {
+        Puede = true;
         vida = maxVida;
         maxVida=100f;
         daño=10f;
@@ -67,32 +73,33 @@ public class playerstats : MonoBehaviour
 
         ActualizarUI();
         Time.timeScale = 0;
+        Puede = false;
         levelUpUI.SetActive(true);
 
         foreach (Transform child in skillPanelContainer)
         {
             Destroy(child.gameObject);
         }
-
-        for (int i = 0; i < 3; i++)
+        powerUpClass[] powerUps = powerUpsObj.GetComponentsInChildren<powerUpClass>();
+        for (int i = 0; i < 4; i++)
         {
             GameObject skillPanelObject = Instantiate(skillPanelPrefab, skillPanelContainer);
-            Text[] texts = skillPanelObject.GetComponentsInChildren<Text>();
-            Image skillImage = skillPanelObject.GetComponentInChildren<Image>();
-
-            if (texts.Length > 1)
-            {
-                Text skillNameText = texts[0];
-                Text skillDescriptionText = texts[1];
-                skillNameText.text = "holaaa";
-                skillDescriptionText.text = "descripcion";
-            }
-
+            panelcontroller a = skillPanelObject.GetComponent<panelcontroller>();
+            TMP_Text skillNameText = a.Name_text;
+            TMP_Text skillDescriptionText = a.description_text;
+            Image skillIconimage = a.icon_image;
+            int j=Random.Range(0, powerUps.Length);
+            powerUpClass powerUp = powerUps[j];
+            skillDescriptionText.text = powerUp.Description;
+            skillNameText.text =powerUp.NameP;
+            skillIconimage.sprite = powerUp.icon;
             Button skillButton = skillPanelObject.GetComponentInChildren<Button>();
+            
             if (skillButton != null)
             {
                 skillButton.onClick.AddListener(() =>
                 {
+                    powerUp.use(this);
                     /*
                     switch (skillPanelObject.name)
                     {
@@ -109,8 +116,8 @@ public class playerstats : MonoBehaviour
                     }
                     */
                     Time.timeScale = 1;
+                    Puede = true;
                     levelUpUI.SetActive(false);
-                    Destroy(skillPanelObject.gameObject);
                 });
             }
         }

@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class gunrotation : MonoBehaviour
 {
+    playerstats stats;
     void Start()
     {
         Cursor.visible = false;
+        stats = GameObject.FindWithTag("Player").GetComponent<playerstats>();
     }
     void Update()
     {
+        if (!stats.Puede) return;
         GirarHaciaElMouse();
     }
 
