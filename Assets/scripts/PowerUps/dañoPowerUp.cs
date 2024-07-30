@@ -13,6 +13,6 @@ public class dañoPowerUp : powerUpClass
     public override void use(playerstats PS)
     {
         base.use(PS);
-
+        PS.daño += 10;
     }
 }

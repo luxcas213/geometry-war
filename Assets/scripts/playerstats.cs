@@ -14,7 +14,6 @@ public class playerstats : MonoBehaviour
     public float velocidad = 5f;
     public float regeneracion = 2f;
     public float bulletSpeed = 20f;
-    public float velocidadRecarga = 2f;
     public float shootSpeed = 0.3f;
     public int nivel = 1;
     public float experiencia = 0f;
@@ -23,12 +22,15 @@ public class playerstats : MonoBehaviour
     public Image barraVida;
     public Image barraExperiencia;
     public Text textoNivel;
+    public Text textoVida;
 
     public GameObject skillPanelPrefab; 
     public Transform skillPanelContainer; 
     public GameObject levelUpUI;
 
     public GameObject powerUpsObj;
+
+    public int cantidadHabilidades;
 
     void Start()
     {
@@ -37,9 +39,8 @@ public class playerstats : MonoBehaviour
         maxVida=100f;
         daño=10f;
         velocidad=5f;
-        regeneracion=2f;
+        regeneracion=0f;
         bulletSpeed=20f;
-        velocidadRecarga=2f;
         shootSpeed=0.3f;
         nivel=1;
         experiencia=0f;
@@ -72,49 +73,37 @@ public class playerstats : MonoBehaviour
         experienciaNecesaria *= 1.2f; 
 
         ActualizarUI();
+        seleccionUI();
+    }
+    void seleccionUI()
+    {
         Time.timeScale = 0;
         Puede = false;
         levelUpUI.SetActive(true);
-
         foreach (Transform child in skillPanelContainer)
         {
             Destroy(child.gameObject);
         }
         powerUpClass[] powerUps = powerUpsObj.GetComponentsInChildren<powerUpClass>();
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < cantidadHabilidades; i++)
         {
             GameObject skillPanelObject = Instantiate(skillPanelPrefab, skillPanelContainer);
             panelcontroller a = skillPanelObject.GetComponent<panelcontroller>();
             TMP_Text skillNameText = a.Name_text;
             TMP_Text skillDescriptionText = a.description_text;
             Image skillIconimage = a.icon_image;
-            int j=Random.Range(0, powerUps.Length);
+            int j = Random.Range(0, powerUps.Length);
             powerUpClass powerUp = powerUps[j];
             skillDescriptionText.text = powerUp.Description;
-            skillNameText.text =powerUp.NameP;
+            skillNameText.text = powerUp.NameP;
             skillIconimage.sprite = powerUp.icon;
             Button skillButton = skillPanelObject.GetComponentInChildren<Button>();
-            
+
             if (skillButton != null)
             {
                 skillButton.onClick.AddListener(() =>
                 {
                     powerUp.use(this);
-                    /*
-                    switch (skillPanelObject.name)
-                    {
-                        case "Daño":
-                            daño += 5f;
-                            break;
-                        case "Vida":
-                            maxVida += 20f;
-                            vida += 20f;
-                            break;
-                        case "Velocidad":
-                            velocidad += 1f;
-                            break;
-                    }
-                    */
                     Time.timeScale = 1;
                     Puede = true;
                     levelUpUI.SetActive(false);
@@ -122,7 +111,6 @@ public class playerstats : MonoBehaviour
             }
         }
     }
-
     public void GanarExperiencia(float cantidad)
     {
         experiencia += cantidad;
@@ -134,5 +122,6 @@ public class playerstats : MonoBehaviour
         barraVida.fillAmount = vida / maxVida;
         barraExperiencia.fillAmount = experiencia / experienciaNecesaria;
         textoNivel.text = "Nivel: " + nivel.ToString();
+        textoVida.text = "PV: " + vida.ToString() + " / " + maxVida.ToString();
     }
 }

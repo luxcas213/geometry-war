@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3578929490068448687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6479208317731474806}
+  - component: {fileID: 1919477044507806357}
+  - component: {fileID: 3161018997142892692}
+  - component: {fileID: 5972701907246578398}
+  - component: {fileID: 4464147408997112662}
+  m_Layer: 0
+  m_Name: powerUpContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6479208317731474806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578929490068448687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 269.5, y: 138, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1919477044507806357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578929490068448687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b32b0dd86487d534fb0e633482efbca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameP: "mas Da\xF1o"
+  Description: "aumento de 10p de da\xF1o"
+  icon: {fileID: 21300000, guid: 8277f12cf3a0f8d4e83d6222d3c53228, type: 3}
+--- !u!114 &3161018997142892692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578929490068448687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a376e0b361cc9349839188ccb7bc7aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameP: Mas Vida
+  Description: Aumenta los PV +10
+  icon: {fileID: 21300000, guid: d31d27d50d51754488f7dd5246af845d, type: 3}
+--- !u!114 &5972701907246578398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578929490068448687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948920a48d180fb4b8472385da6bd7a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameP: Regeneration
+  Description: aumento en la regeneracion de PV +1
+  icon: {fileID: 21300000, guid: 67487b0085c21f34c8cd1bb241450e5b, type: 3}
+--- !u!114 &4464147408997112662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578929490068448687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0080e5f7bf73a43860c0791a684e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameP: Upgrade Gun
+  Description: "agrega un ca\xF1on mas al arma"
+  icon: {fileID: 21300000, guid: f3f4cee56e79e6e40b649a0ec023dbf7, type: 3}
